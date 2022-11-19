@@ -1,0 +1,230 @@
+<div id="weekly-timetable">
+  <div class="content-block" id="schedule">
+    <div class="container" id="timetable">
+      <!-- Schedule Top Navigation -->
+      <nav class="nav nav-tabs">
+        <a class="nav-link active">Mon</a>
+        <a class="nav-link">Tue</a>
+        <a class="nav-link">Wed</a>
+        <a class="nav-link">Thu</a>
+        <a class="nav-link">Fri</a>
+        <a class="nav-link">Sat</a>
+        <a class="nav-link">Sun</a>
+      </nav>
+
+      <div class="tab-content">
+        <div class="tab-pane show active">
+          <div class="row">
+            <!-- Schedule Item 1 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/FFB6C1/000000"
+                    alt="Contemporary Dance"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">4:00pm - 5:00pm</div>
+                  <div id="timetable-item-name">Contemporary Dance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule Item 2 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/00FFFF/000000"
+                    alt="Break Dance"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">5:00pm - 6:00pm</div>
+                  <div id="timetable-item-name">Break Dance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule Item 3 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/8A2BE2/000000"
+                    alt="Street Dance"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">5:00pm - 6:00pm</div>
+                  <div id="timetable-item-name">Street Dance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule Item 4 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/6495ED/000000"
+                    alt="Yoga"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">7:00pm - 8:00pm</div>
+                  <div id="timetable-item-name">Yoga</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule Item 5 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/00FFFF/000000"
+                    alt="Stretching"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">6:00pm - 7:00pm</div>
+                  <div id="timetable-item-name">Stretching</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Schedule Item 6 -->
+            <div class="col-md-6 d-flex">
+              <div class="flex-fill" id="timetable-item">
+                <div id="timetable-item-img">
+                  <img
+                    src="https://via.placeholder.com/100x80/008B8B/000000"
+                    alt="Street Dance"
+                  />
+                </div>
+                <div id="timetable-item-main">
+                  <div id="timetable-item-time">8:00pm - 9:00pm</div>
+                  <div id="timetable-item-name">Street Dance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  #weekly-timetable .classes-details ul#timetable {
+    margin: 0 0 22px;
+    padding: 0;
+  }
+  #weekly-timetable .classes-details ul#timetable li {
+    list-style: none;
+    font-size: 15px;
+    color: #7f7f7f;
+  }
+  #weekly-timetable #timetable {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #weekly-timetable #timetable-item {
+    border: 1px solid #d8e3eb;
+    padding: 15px;
+    margin-top: 20px;
+    position: relative;
+    display: block;
+  }
+  @media (min-width: 768px) {
+    #weekly-timetable #timetable-item {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+    }
+  }
+  #weekly-timetable #timetable-item-img {
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    display: none;
+  }
+  #weekly-timetable #timetable-item-img img {
+    height: 100%;
+  }
+  @media (min-width: 768px) {
+    #weekly-timetable #timetable-item-img {
+      display: block;
+    }
+  }
+  #weekly-timetable #timetable-item-main {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+    margin-top: 12px;
+  }
+  @media (min-width: 768px) {
+    #weekly-timetable #timetable-item-main {
+      margin-top: 0;
+      padding-left: 15px;
+    }
+  }
+  #weekly-timetable #timetable-item-time {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  #weekly-timetable #timetable-item-name {
+    font-size: 14px;
+    margin-bottom: 19px;
+    word-break: break-word;
+  }
+  #weekly-timetable .btn-book {
+    padding: 6px 30px;
+    width: 100%;
+  }
+  #weekly-timetable #schedule .nav-tabs {
+    border-bottom: 2px solid #104455;
+  }
+  #weekly-timetable #schedule .nav-link {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3d3d3d;
+    font-weight: 500;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    border-radius: 2px 2px 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    cursor: pointer;
+  }
+  @media (min-width: 768px) {
+    #weekly-timetable #schedule .nav-link {
+      font-size: 16px;
+    }
+  }
+  #weekly-timetable #schedule .nav-link.active {
+    background: #104455;
+    border-color: #104455;
+    color: #fff;
+  }
+  #weekly-timetable #schedule .nav-link.active:focus {
+    border-color: #104455;
+  }
+  #weekly-timetable #schedule .nav-link:hover:not(.active) {
+    background: #46c1be;
+    border-color: #46c1be;
+    color: #fff;
+  }
+  #weekly-timetable #schedule .tab-pane {
+    padding-top: 10px;
+  }
+</style>

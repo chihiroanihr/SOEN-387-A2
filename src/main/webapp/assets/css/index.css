@@ -1,0 +1,23 @@
+.container-fluid {
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 450px;
+}
+
+button {
+  background-color: darkcyan;
+  /* button background */
+  color: white;
+  /* button text */
+  border-color: darkcyan;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+/* Add a background color on hover */
+button:hover {
+  background-color: rgb(114, 129, 134);
+  border-color: rgb(114, 129, 134);
+}

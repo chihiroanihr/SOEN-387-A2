@@ -1,0 +1,149 @@
+<div id="formContainer" class="container px-3">
+  <form id="courseForm">
+    <div class="mb-3">
+      <label for="courseCode" class="form-label">Course Code</label>
+      <input
+        type="text"
+        class="form-control"
+        id="courseCode"
+        name="courseCode"
+        placeholder="Enter Course Code"
+      />
+      <span id="invalidCourseCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="courseTitle" class="form-label">Course Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="courseTitle"
+        name="courseTitle"
+        placeholder="Enter Course Title"
+      />
+      <span id="invalidCourseTitle" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="semester" class="form-label">Semester</label>
+      <select class="form-control" id="semester" name="semester">
+        <option value="select">Select a Semester</option>
+      </select>
+      <span id="invalidSemester" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="daysOfWeek" class="form-label">Days</label>
+      <!-- checkbox for daysOfWeek -->
+      <div id="daysOfWeek">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="sun"
+          class="weekday"
+        />
+        <label for="sun" class="form-check-label">Sun</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="mon"
+          class="weekday"
+        />
+        <label for="mon" class="form-check-label">Mon</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="tue"
+          class="weekday"
+        />
+        <label for="tue" class="form-check-label">Tue</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="wed"
+          class="weekday"
+        />
+        <label for="wed" class="form-check-label">Wed</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="thu"
+          class="weekday"
+        />
+        <label for="thu" class="form-check-label">Thu</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="fri"
+          class="weekday"
+        />
+        <label for="fri" class="form-check-label">Fri</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="sat"
+          class="weekday"
+        />
+        <label for="sat" class="form-check-label">Sat</label>
+      </div>
+      <span id="invalidDaysOfWeek" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="startTime" class="form-label">Start Time</label>
+      <input type="time" class="form-control" id="startTime" name="startTime" />
+      <span id="invalidStartTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="endTime" class="form-label">End Time</label>
+      <input type="time" class="form-control" id="endTime" name="endTime" />
+      <span id="invalidEndTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="room" class="form-label">Room Number</label>
+      <input
+        type="text"
+        class="form-control"
+        id="room"
+        name="room"
+        placeholder="Enter a Room"
+      />
+      <span id="invalidRoom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Start Date</label>
+      <input type="date" class="form-control" id="startDate" name="startDate" />
+      <span id="invalidStartDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+      <label for="endDate" class="form-label">End Date</label>
+      <input type="date" class="form-control" id="endDate" name="endDate" />
+      <span id="invalidEndDate" class="text-danger"></span>
+    </div>
+
+    <div class="row my-3 gx-5 gy-3 mx-4">
+      <div class="col-sm-6">
+        <!-- <div class="mt-4 mb-3 d-flex justify-content-around"> -->
+        <input
+          type="submit"
+          id="submitButton"
+          name="submitButton"
+          class="btn btn-primary"
+          value="Add"
+        />
+      </div>
+      <div class="col-sm-6">
+        <input
+          type="reset"
+          id="resetButton"
+          class="btn btn-light"
+          value="Reset"
+        />
+      </div>
+    </div>
+  </form>
+</div>

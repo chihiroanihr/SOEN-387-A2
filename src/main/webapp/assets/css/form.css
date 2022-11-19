@@ -1,0 +1,68 @@
+.container#formContainer {
+  max-width: 500px;
+}
+
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.15), 0 6px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  width: 100%;
+  border: none;
+  font-weight: bold;
+}
+
+input[type="reset"] {
+  width: 100%;
+  border: none;
+  background-color: lightgrey;
+  font-weight: bold;
+}
+
+#daysOfWeek input {
+  display: none !important;
+}
+
+#daysOfWeek input[type="checkbox"] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: lightgrey;
+  width: 40px;
+  margin-right: 5px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#daysOfWeek input[type="checkbox"]:checked + label {
+  background: #0d6efd;
+  color: #ffffff;
+}
+
+/* screen 400px and low */
+@media screen and (max-width: 450px) {
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .col-sm-6 {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+}

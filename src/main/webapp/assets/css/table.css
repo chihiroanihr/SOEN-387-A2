@@ -1,0 +1,20 @@
+thead {
+  color: #fff;
+  background: #6c7ae0;
+}
+
+.wrap-table {
+  border-radius: 10px;
+}
+
+.table {
+  background: #fff;
+}
+
+td#professor {
+  white-space: pre
+}
+
+.table-disabled {
+  opacity: .4;
+}

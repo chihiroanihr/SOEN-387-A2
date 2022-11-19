@@ -1,0 +1,25 @@
+form#searchForm {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-control-sm#searchBox {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+.form-control-sm#searchBox:focus {
+  box-shadow: 0 0 0 0;
+}
+.btn#searchButton {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+form#searchForm:focus-within {
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+  border-radius: 0.3rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media screen and (max-width: 575px) {
+  form#searchForm {
+    width: 100%;
+  }
+}

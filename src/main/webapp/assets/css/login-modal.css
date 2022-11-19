@@ -1,0 +1,38 @@
+a {
+  color: darkcyan;
+}
+
+.btn {
+  background-color: darkcyan;
+  color: white;
+  /* button text */
+  border-color: darkcyan;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: rgb(114, 129, 134);
+  border-color: rgb(114, 129, 134);
+}
+
+.form-control {
+  border-color: darkcyan !important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgb(0, 139, 139, 0.3);
+}
+
+.modal-dialog {
+  pointer-events: all;
+}
+
+#loginModal {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#loginFormWrapper {
+  width: 350px;
+  padding: 2.3rem;
+  padding-top: 0;
+}
