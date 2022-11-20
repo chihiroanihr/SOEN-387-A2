@@ -10,26 +10,34 @@ import static com.soen387.db.db_connection.*;
 
 public class StudentDaoImpl implements StudentDao {
     // SQL Statements
-    private static final String FIND_BY_ID = "SELECT * FROM Student WHERE studentID = ?";
+
+    //Checks if student exists
+    private static final String FIND_BY_ID = "SELECT * FROM Student WHERE studentID = ?;";
+
+    //Inserts student into Student table
     private static final String INSERT = "INSERT INTO Student (studentID) VALUES(?)";
+
+   //Find student's personal info
     private static final String GET_INFO = "SELECT personID, password, firstName, lastName, dob, email, phoneNum, address " +
             "FROM Person " +
             "INNER JOIN Student " +
             "ON Person.personID = Student.studentID " +
-            "WHERE Person.personID = ?";
+            "WHERE Person.personID = ?;";
 
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
+    //Extract data from ResultSet object and instantiate a Student object
     private Student extractStudentFromResultSet(ResultSet rs) throws SQLException {
         long studentId = rs.getLong("studentID");
 
         return new Student(studentId);
     }
 
+    //Check if student ID exists in the database
     public boolean checkIsStudent(long studentId) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing checkIsStudent method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_BY_ID);
@@ -45,8 +53,9 @@ public class StudentDaoImpl implements StudentDao {
         }
     }
 
+    //Insert a Student record into Student table
     public boolean insert(Student student) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing insert(Student) method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(INSERT);
@@ -67,6 +76,7 @@ public class StudentDaoImpl implements StudentDao {
         return false;
     }
 
+    //Extract data from ResulSet object and instantiate a Person object
     private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {
         long personId = rs.getLong("personID");
         String password = rs.getString("password");

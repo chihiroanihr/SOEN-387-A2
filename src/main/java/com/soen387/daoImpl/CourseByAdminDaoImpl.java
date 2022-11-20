@@ -13,16 +13,26 @@ import static com.soen387.db.db_connection.connect;
 
 public class CourseByAdminDaoImpl implements CourseByAdminDao {
     // SQL Statements
-    private static final String FIND_BY_ADMIN_ID = "SELECT * FROM CourseByAdmin WHERE adminID = ?";
-    private static final String INSERT = "INSERT INTO CourseByAdmin (adminID, courseCode, courseTitle, semester, daysOfWeek, startTime, endTime, room, startDate, endDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE CourseByAdmin SET courseTitle = ?, daysOfWeek = ?, startTime = ?, endTime = ?, room = ?, startDate = ?, endDate = ? WHERE adminID = ? AND courseCode = ? AND semester = ?";
-    private static final String DELETE = "DELETE FROM CourseByAdmin WHERE adminID =? AND courseCode = ? AND semester = ?";
-    private static final String CHECK_CLASS_TIME_OVERLAP = "SELECT * FROM CourseByAdmin WHERE adminID = ? AND semester = ? AND (startTime <= ? AND ? <= endTime) AND (startDate <= ? AND ? <= endDate)";
+
+    //Finds all courses created by a certain admin
+    private static final String FIND_BY_ADMIN_ID = "SELECT * FROM CourseByAdmin WHERE adminID = ?;";
+
+    //Inserts a record into CourseByAdmin table
+    private static final String INSERT = "INSERT INTO CourseByAdmin (adminID, courseCode, courseTitle, semester, daysOfWeek, startTime, endTime, room, startDate, endDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    //Modifies course details by updating CourseByAdmin table
+    private static final String UPDATE = "UPDATE CourseByAdmin SET courseTitle = ?, daysOfWeek = ?, startTime = ?, endTime = ?, room = ?, startDate = ?, endDate = ? WHERE adminID = ? AND courseCode = ? AND semester = ?;";
+
+    //Deletes a record from CourseByAdmin table
+    private static final String DELETE = "DELETE FROM CourseByAdmin WHERE adminID =? AND courseCode = ? AND semester = ?;";
+
+    private static final String CHECK_CLASS_TIME_OVERLAP = "SELECT * FROM CourseByAdmin WHERE adminID = ? AND semester = ? AND (startTime <= ? AND ? <= endTime) AND (startDate <= ? AND ? <= endDate);";
 
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
+    //Extract data from ResultSet object and instantiate a CourseByAdmin object
     private CourseByAdmin extractCourseFromResultSet(ResultSet rs) throws SQLException {
         long adminId = rs.getLong("adminID");
         String courseCode = rs.getString("courseCode");
@@ -38,10 +48,11 @@ public class CourseByAdminDaoImpl implements CourseByAdminDao {
         return new CourseByAdmin(adminId, courseCode, courseTitle, semester, daysOfWeek, startTime, endTime, room, startDate, endDate);
     }
 
+    //Find all courses created by the current admin and returns a list
     public List<CourseByAdmin> findAllCoursesByAdmin(long adminId) {
         List<CourseByAdmin> courses = new ArrayList<>();
 
-        System.out.println("Executing statement...");
+        System.out.println("Executing findAllCoursesByAdmin method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_BY_ADMIN_ID);
@@ -61,8 +72,9 @@ public class CourseByAdminDaoImpl implements CourseByAdminDao {
         return courses;
     }
 
+    //Delete a course, used by an admin
     public boolean delete(long adminId, String courseCode, String semester) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing delete(Course) method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(DELETE);
@@ -87,8 +99,9 @@ public class CourseByAdminDaoImpl implements CourseByAdminDao {
         return false;
     }
 
+    //Insert a record to CourseByAdmin table when admin creates a course
     public boolean insert(CourseByAdmin courseByAdmin) {
-        System.out.println("Executing statement..");
+        System.out.println("Executing insert(course) method..");
         try {
             conn = connect();
             stmt = conn.prepareStatement(INSERT);
@@ -120,8 +133,9 @@ public class CourseByAdminDaoImpl implements CourseByAdminDao {
         return false;
     }
 
+    //Update course details, used by an admin
     public boolean update(CourseByAdmin courseByAdmin) {
-        System.out.println("Executing statement..");
+        System.out.println("Executing update(Course) method ..");
         try {
             conn = connect();
             stmt = conn.prepareStatement(UPDATE);
@@ -154,7 +168,7 @@ public class CourseByAdminDaoImpl implements CourseByAdminDao {
     }
 
     public boolean checkClassTimeOverlap(CourseByAdmin courseByAdmin) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing checkClassTimeOverlap method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(CHECK_CLASS_TIME_OVERLAP);

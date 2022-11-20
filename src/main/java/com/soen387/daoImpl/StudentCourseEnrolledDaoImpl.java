@@ -16,25 +16,29 @@ import static com.soen387.db.db_connection.connect;
 
 public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
 
-    private static final String DELETE = "DELETE FROM StudentCourseEnrolled WHERE studentID = ? AND courseCode = ? AND semester = ? AND adminID = ?";
-    private static final String INSERT = "INSERT INTO StudentCourseEnrolled(studentID, courseCode, semester, adminID) VALUES (?, ?, ?, ?)";
+    //Drops student from a course
+    private static final String DELETE = "DELETE FROM StudentCourseEnrolled WHERE studentID = ? AND courseCode = ? AND semester = ? AND adminID = ?;";
 
-    private static final String DELETE_ALL = "DELETE FROM StudentCourseEnrolled WHERE adminID = ? AND courseCode = ? AND semester = ?";
+    //Inserts a record into StudentCourseEnrolled. This occurs when a student registers for a course
+    private static final String INSERT = "INSERT INTO StudentCourseEnrolled(studentID, courseCode, semester, adminID) VALUES (?, ?, ?, ?);";
 
-    // Find all student enrolled in certain course and Get only student ID
-    private static final String FIND_ALL_STUDENT_ID_IN_COURSE = "SELECT studentID FROM StudentCourseEnrolled WHERE courseCode = ? AND semester = ? AND adminID = ?";
-    // Find all student enrolled in certain course and Get student-person info
+    //Deletes all students enrolled in a course
+    private static final String DELETE_ALL = "DELETE FROM StudentCourseEnrolled WHERE adminID = ? AND courseCode = ? AND semester = ?;";
+
+    // Finds all students enrolled in certain course and Get only student ID
+    private static final String FIND_ALL_STUDENT_ID_IN_COURSE = "SELECT studentID FROM StudentCourseEnrolled WHERE courseCode = ? AND semester = ? AND adminID = ?;";
+    // Finds all student enrolled in certain course and Get student-person info
     private static final String FIND_ALL_STUDENTS_IN_COURSE = "SELECT P.personID, P.password, P.firstName, P.lastName, P.dob, P.email, P.phoneNum, P.address " +
             "FROM Person AS P " +
             "INNER JOIN StudentCourseEnrolled AS S " +
             "ON S.studentID = P.personID " +
-            "WHERE S.courseCode = ? AND S.semester = ? AND S.adminID = ?";
+            "WHERE S.courseCode = ? AND S.semester = ? AND S.adminID = ?;";
 
     private static final String FIND_ALL_COURSES_ENROLLED_BY_STUDENT = "SELECT A.courseCode, A.courseTitle, A.semester, A.daysOfWeek, A.startTime, A.endTime, A.room, A.startDate, A.endDate, A.adminID " +
             "    FROM CourseByAdmin as A " +
             "    INNER JOIN StudentCourseEnrolled as S " +
             "    ON S.courseCode = A.courseCode AND S.semester = A.semester AND S.adminID = A.adminID " +
-            "    WHERE S.studentID = ?";
+            "    WHERE S.studentID = ?;";
 
     private static final String FIND_ALL_COURSES_AVAILABLE_FOR_STUDENT = "SELECT A.courseCode, A.courseTitle, A.semester, A.daysOfWeek, A.startTime, A.endTime, A.room, A.startDate, A.endDate, A.adminID " + "" +
             "FROM CourseByAdmin as A " +
@@ -44,7 +48,7 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
             "FROM StudentCourseEnrolled AS S " +
             "WHERE S.studentID = ? AND S.courseCode = A.courseCode AND S.semester = A.semester AND S.adminID = A.adminID " +
             ") " +
-            "ORDER BY A.courseCode, A.semester";
+            "ORDER BY A.courseCode, A.semester;";
     private static final String CHECK_CLASS_TIME_OVERLAP = "SELECT S.studentID, A.adminID, A.courseCode, A.semester, A.daysOfWeek, A.startTime, A.endTime, A.startDate, A.endDate " +
             "FROM StudentCourseEnrolled as S " +
             "INNER JOIN CourseByAdmin as A " +
@@ -52,15 +56,15 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
             "WHERE S.studentID = ? " +
             "AND A.semester = ? " +
             "AND (A.startTime <= ? AND ? <= A.endTime) " +
-            "AND (A.startDate <= ? AND ? <= A.endDate)";
+            "AND (A.startDate <= ? AND ? <= A.endDate);";
 
     Connection conn = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    // Drop student from course
+    // Drop student from a course by deleting a record from the StudentCourseEnrolled table
     public boolean delete(StudentCourseEnrolled studentCourseEnrolled) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing delete(Student) method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(DELETE);
@@ -86,9 +90,9 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return false;
     }
 
-    // Enroll student to course
+    // Enroll student to a course by inserting a record to StudentCourseEnrolled table
     public boolean insert(StudentCourseEnrolled studentCourseEnrolled) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing insert(Student) method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(INSERT);
@@ -112,8 +116,9 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return false;
     }
 
+    //Delete all students enrolled in a certain course
     public boolean deleteAll(long adminId, String courseCode, String semester) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing deleteAll method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(DELETE_ALL);
@@ -139,10 +144,12 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return false;
     }
 
+    //Find all students enrolled in a specific course
+    //Returns a list of students
     public List<Student> findAllStudentID(long adminId, String courseCode, String semester) {
         List<Student> students = new ArrayList<>();
 
-        System.out.println("Executing statement...");
+        System.out.println("Executing findAllStudentID method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_ALL_STUDENT_ID_IN_COURSE);
@@ -165,10 +172,12 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return students;
     }
 
+    //Find all students enrolled in a specific course
+    //Returns a list of students, with all their personal info
     public List<Person> findAllStudentInfo(long adminId, String courseCode, String semester) {
         List<Person> students = new ArrayList<>();
 
-        System.out.println("Executing statement...");
+        System.out.println("Executing findAllStudentInfo method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_ALL_STUDENTS_IN_COURSE);
@@ -191,10 +200,12 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return students;
     }
 
+    //Find courses enrolled by a certain student
+    //Returns a list of courses, each with course info
     public List<CourseByAdmin> findAllCoursesEnrolledByStudent(long studentId) {
         List<CourseByAdmin> courses = new ArrayList<>();
 
-        System.out.println("Executing statement...");
+        System.out.println("Executing findAllCoursesEnrolledByStudent method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_ALL_COURSES_ENROLLED_BY_STUDENT);
@@ -215,10 +226,12 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return courses;
     }
 
+    //Find courses available for students to enroll
+    //Returns a list of courses created by admins and that the student has not enrolled yet
     public List<CourseByAdmin> findAllCoursesAvailableForStudent(long studentId) {
         List<CourseByAdmin> courses = new ArrayList<>();
 
-        System.out.println("Executing statement...");
+        System.out.println("Executing findAllCoursesAvailableForStudent method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_ALL_COURSES_AVAILABLE_FOR_STUDENT);
@@ -239,12 +252,14 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return courses;
     }
 
+    //Extract data from ResultSet object and instantiate a Student object
     private Student extractStudentFromResultSet(ResultSet rs) throws SQLException {
         long studentId = rs.getLong("studentId");
 
         return new Student(studentId);
     }
 
+    //Extract data from ResultSet object and instantiate a Person object
     private Person extractPersonFromResultSet(ResultSet rs) throws SQLException {
         long personId = rs.getLong("personID");
         String password = rs.getString("password");
@@ -258,6 +273,7 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         return new Person(personId, password, firstName, lastName, dob, email, phoneNum, address);
     }
 
+    //Extract data from ResultSet object and instantiate a CourseByAdmin object
     private CourseByAdmin extractCourseFromResultSet(ResultSet rs) throws SQLException {
         long adminId = rs.getLong("adminID");
         String courseCode = rs.getString("courseCode");
@@ -274,7 +290,7 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
     }
 
     public boolean checkClassTimeOverlap(Student student, CourseByAdmin courseByAdmin) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing checkClassTimeOverlap method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(CHECK_CLASS_TIME_OVERLAP);

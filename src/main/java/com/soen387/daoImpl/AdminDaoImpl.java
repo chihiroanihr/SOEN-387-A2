@@ -9,8 +9,12 @@ import static com.soen387.db.db_connection.*;
 
 public class AdminDaoImpl implements AdminDao {
     // SQL Statements
-    private static final String FIND_BY_ID = "SELECT * FROM Admin WHERE adminID = ?";
-    private static final String INSERT = "INSERT INTO Admin (adminID) VALUES(?)";
+
+    //Finds an Admin record from Admin table
+    private static final String FIND_BY_ID = "SELECT * FROM Admin WHERE adminID = ?;";
+
+    //Inserts an Admin record into Admin table
+    private static final String INSERT = "INSERT INTO Admin (adminID) VALUES(?);";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -22,8 +26,9 @@ public class AdminDaoImpl implements AdminDao {
         return new Admin(adminId);
     }
 
+    //Checks if an admin exists in the Admin table
     public boolean checkIsAdmin(long adminId) {
-        System.out.println("Executing statement...");
+        System.out.println("Executing checkIsAdmin method...");
         try {
             conn = connect();
             stmt = conn.prepareStatement(FIND_BY_ID);
@@ -39,8 +44,9 @@ public class AdminDaoImpl implements AdminDao {
         }
     }
 
+    //Inserts an admin record into Admin table
     public boolean insert(Admin admin) {
-        System.out.println("Executing statement..");
+        System.out.println("Executing insert(Admin) method..");
         try {
             conn = connect();
             stmt = conn.prepareStatement(INSERT);
