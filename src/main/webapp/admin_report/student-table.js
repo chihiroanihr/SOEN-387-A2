@@ -34,7 +34,7 @@ function makeTable(i, row) {
 function addStudentToTable(i, j, row) {
   const studentID = row.personId;
   const studentFirstName = row.firstName;
-  const studentLastName = row.lastNaeme;
+  const studentLastName = row.lastName;
   const studentEmail = row.email;
 
   $("#studentTable-" + i).append(

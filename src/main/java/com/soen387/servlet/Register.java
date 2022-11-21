@@ -85,7 +85,7 @@ public class Register extends HttpServlet {
                     Student student = new Student(userId);
                     studentStatus = studentDao.insert(student);
                     break;
-                // Insert user ID into Student database if userType == student
+                // Insert user ID into Admin database if userType == admin
                 case "admin":
                     Admin admin = new Admin(userId);
                     adminStatus = adminDao.insert(admin);

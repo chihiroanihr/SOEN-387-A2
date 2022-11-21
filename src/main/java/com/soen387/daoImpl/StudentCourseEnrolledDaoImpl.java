@@ -180,7 +180,13 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         System.out.println("Executing findAllStudentInfo method...");
         try {
             conn = connect();
-            stmt = conn.prepareStatement(FIND_ALL_STUDENTS_IN_COURSE);
+
+            //Implement concurrency when an admin tries to find all students enrolled in a certain course
+            //and when a student enrols in that course at the same time. TYPE_SCROLL_SENSITIVE will ensure that
+            //the changes made by another thread to the data that ResultSet currently holds will change/update the
+            //current data to make everything consistent.
+            //It is CONCUR_READ_ONLY because the current ResultSet object cannot be updated
+            stmt = conn.prepareStatement(FIND_ALL_STUDENTS_IN_COURSE, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt.setString(1, courseCode);
             stmt.setString(2, semester);
             stmt.setLong(3, adminId);
@@ -208,7 +214,12 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         System.out.println("Executing findAllCoursesEnrolledByStudent method...");
         try {
             conn = connect();
-            stmt = conn.prepareStatement(FIND_ALL_COURSES_ENROLLED_BY_STUDENT);
+
+            //Implement concurrency when an admin tries to find all courses taken by a certain student and when that
+            //specific student enrols in a new course. TYPE_SCROLL_SENSITIVE will ensure that when a certain student
+            //enrols in a new course, this will update the ResultSet object that the admin holds, or in other words, the
+            // list of courses taken by that student from the admin's perspective.
+            stmt = conn.prepareStatement(FIND_ALL_COURSES_ENROLLED_BY_STUDENT, ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             stmt.setLong(1, studentId);
             rs = stmt.executeQuery();
 
@@ -234,7 +245,11 @@ public class StudentCourseEnrolledDaoImpl implements StudentCourseEnrolledDao {
         System.out.println("Executing findAllCoursesAvailableForStudent method...");
         try {
             conn = connect();
-            stmt = conn.prepareStatement(FIND_ALL_COURSES_AVAILABLE_FOR_STUDENT);
+
+            //Implement concurrency when a student tries to find all courses available to register and when an admin adds
+            //a new course to the list. TYPE_SCROLL_SENSITIVE will ensure that when a student is looking for courses to
+            //register, when an admin creates a new course, the student will see the new course added to the list right away.
+            stmt = conn.prepareStatement(FIND_ALL_COURSES_AVAILABLE_FOR_STUDENT, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             stmt.setLong(1, studentId);
             rs = stmt.executeQuery();
 
