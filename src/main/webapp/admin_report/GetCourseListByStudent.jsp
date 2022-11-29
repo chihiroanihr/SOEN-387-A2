@@ -49,9 +49,9 @@
 
         <!-- list of courses by student table -->
         <div class="container px-3" id="studentCourseTableContainer">
-            <h3 id="studentName"></h3>
-            <p id="studentEmail"></p>
             <div class='wrap-table table-responsive mb-5' id='studentCourseTableWrapper'>
+                <h3 id="studentName"></h3>
+                <p id="studentEmail"></p>
                 <table class='table table-striped' id='studentCourseTable'>
                     <thead>
                         <tr>
@@ -104,6 +104,9 @@
                         $("#studentEmail").text(email);
 
                         if (response.courses === "empty") {
+                            document.getElementById("studentCourseTableWrapper").style.display = "none";
+                            document.getElementById("alertWarning").style.display = "block";
+                            document.getElementById("alertDanger").style.display = "none";
                             $("#alertWarning").html(
                                 "This student is not registered in any courses."
                             );
