@@ -16,7 +16,7 @@ public class db_connection {
     static final String DB_NAME = "soen387";
     // Database credentials
     static final String DB_USER = "root";
-    static final String DB_PASSWORD = "";
+    static final String DB_PASSWORD = "soen387a2";
     // Database connection state
     static Connection conn = null;
 
