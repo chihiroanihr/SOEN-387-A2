@@ -2,7 +2,6 @@ package com.soen387.servlet;
 
 import com.google.gson.Gson;
 import com.soen387.beans.CourseByAdmin;
-import com.soen387.beans.Student;
 import com.soen387.beans.StudentCourseEnrolled;
 import com.soen387.dao.StudentCourseEnrolledDao;
 import com.soen387.daoImpl.StudentCourseEnrolledDaoImpl;
